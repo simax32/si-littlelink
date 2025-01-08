@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Page Information -->
+  <meta charset="utf-8">
+  <title>simaxsp´s Links</title>
+  <meta name="description" content="Simon Spötzl">
+  <meta name="author" content="Simon Spötzl">
+
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/normalize.css">
+
+  <!-- Themes -->
+  <link rel="stylesheet" href="css/skeleton-auto.css">
+
+  <!-- Brand Styles -->
+  <link rel="stylesheet" href="css/brands.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/-O171LzQ_400x400.jpg">
+
+  <style>
+    /* Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #36d1dc 10%, #5b86e5 90%);
+      color: #ffffff;
+      line-height: 1.6;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .column {
+      padding: 20px;
+    }
+
+    /* Header Styling */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 10;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    header nav a {
+      color: #f39c12;
+      margin: 0 1.2rem;
+      text-decoration: none;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    header nav a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #f39c12;
+      bottom: -5px;
+      left: 0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    header nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    header nav a:hover {
+      color: #fff;
+    }
+
+    /* Avatar Image */
+    .avatar {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 1rem;
+      border: 5px solid #f39c12;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      background: url('https://source.unsplash.com/1600x900/?mountain,sky') no-repeat center center/cover;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      animation: bounceIn 1s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      width: 70%;
+      margin: 0 auto;
+      line-height: 1.8;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+
+      50% {
+        transform: translateY(15px);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Button Styles */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background-color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #f39c12;
+    }
+
+    .button img {
+      margin-right: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.7);
+      color: #f39c12;
+      text-align: center;
+      padding: 1.5rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    footer p {
+      font-size: 1.1rem;
+    }
+
+    footer p a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    footer p a:hover {
+      color: #f39c12;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="column" style="margin-top: 10%">
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      <!-- Avatar Image -->
+      <img src="images/-O171LzQ_400x400.jpg" class="avatar" srcset="images/-O171LzQ_400x400.jpg" alt="">
+
+      <!-- Title -->
+      <h1>Simon Spötzl</h1>
+
+      <!-- Short Bio -->
+      <p style="font-size: 24px;"><b>Meine kleine Linkliste</b></p>
+
+      <!-- Socials -->
+      <p><b>Socials</b></p>
+      <a class="button" href="https://bsky.app/profile/sptzl.eu" target="_blank" rel="noopener"><img class="icon" src="images/icons/bluesky_white.svg" alt="Bluesky Logo">BlueSky</a><br>
+      <a class="button" href="https://github.com/simax32" target="_blank" rel="noopener"><img class="icon" src="images/icons/github.svg" alt="GitHub Logo">GitHub</a><br>
+      <a class="button" href="https://zug.network/@simaxsp" target="_blank" rel="noopener"><img class="icon" src="images/icons/zugnetwork.ico" alt="Fediverse Logo">Fediverse</a><br>
+
+      <!-- Messengers -->
+      <p><b>Messenger</b></p>
+      <a class="button" href="https://t.me/simax1111" target="_blank" rel="noopener"><img class="icon" src="images/icons/telegram.svg" alt="Telegram Logo">Telegram</a><br>
+      <a class="button" href="https://sptzl.eu/0qgVoG" target="_blank" rel="noopener"><img class="icon" src="images/icons/iMessage.svg" alt="iMessage Logo">iMessage</a><br>
+
+      <!-- Additional Links -->
+      <p><b>Bahnzeug</b></p>
+      <a class="button" href="https://sptzl.eu/umap-simaxsp" target="_blank" rel="noopener"><img class="icon" src="images/icons/umap.svg" alt="Umap Logo">Meine Bahnfahrten</a><br>
+      <a class="button" href="https://traewelling.de/@simaxsp" target="_blank" rel="noopener"><img class="icon" src="images/icons/Traewelling.png" alt="Traewelling">Traewelling</a><br>
+
+      <br><br><br><br>
+      <p><a href="privacy.html">Privacy Policy</a> | Build your own by forking <a href="https://littlelink.io" target="_blank" rel="noopener">LittleLink</a>.</p>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Built with ❤️ by Simon Spötzl</p>
+  </footer>
+
+</body>
+
+</html>
