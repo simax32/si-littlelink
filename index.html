@@ -19,6 +19,7 @@
       display: inline-block;
       margin-bottom: 15px;
       transition: all 0.3s ease;
+      z-index: 1;
     }
     a.button::after {
       content: "";
@@ -49,33 +50,78 @@
       object-fit: cover;
       aspect-ratio: 1/1;
     }
-    /* Hintergrundfarbverlauf für Lightmode */
-    body {
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      transition: background 0.5s ease;
     }
-    /* Hintergrundfarbverlauf für Darkmode */
+
+    /* Lightmode Hintergrund mit drei Farben */
+    body {
+    background: linear-gradient(135deg, #FFD1DC 0%, #FFE5B4 50%, #B4E9FF 100%);
+    /*background: linear-gradient(135deg, #98FB98 0%, #FFD6FF 50%, #B4EEB4 100%);*/
+    
+    
+    }
+
+    /* Darkmode Hintergrund */
     @media (prefers-color-scheme: dark) {
       body {
         background: linear-gradient(135deg, #3a3f4b 0%, #1a1d29 100%);
       }
     }
+
+    /* Stile für den interaktiven Hintergrund */
+    #interactive-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Anpassungen für Darkmode */
+    @media (prefers-color-scheme: dark) {
+      .circle {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+
     img.avatar {
       border: 3px solid #fff;
       border-radius: 50%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1;
     }
+
     /* Überschriften-Stil mit automatischer Anpassung an Dark-/Lightmode */
     .section-title {
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 10px;
       color: var(--text-color); /* Automatische Anpassung */
+      z-index: 1;
     }
+
     /* QR-Code-Container-Stil */
     .qrcode-container {
       position: relative;
       margin-bottom: 0;
       transition: margin-bottom 0.3s ease;
+      z-index: 1;
     }
     .qrcode-tooltip {
       display: none;
@@ -105,95 +151,107 @@
     .qrcode-container.show-qr {
       margin-bottom: 120px;
     }
+    .content {
+      position: relative;
+      z-index: 1;
+      color: var(--text-color);
+      padding: 20px;
+    }
   </style>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/-O171LzQ_400x400.jpg">
 </head>
 <body>
-  <!-- Primary Page Layout -->
-  <div class="container">
-    <div class="row">
-      <div class="column" style="margin-top: 10%">
-        <!-- Profilbild -->
-        <img src="images/-O171LzQ_400x400.jpg" class="avatar" srcset="images/-O171LzQ_400x400.jpg" alt="">
-        <!-- Titel -->
-        <h1 role="heading">Simon Spötzl</h1>
-        <!-- Kurze Bio -->
-        <p style="font-size: 24px;"><b>Meine kleine Linkliste</b></p>
+  <div id="interactive-bg"></div>
+  <div class="content">
+    <!-- Primary Page Layout -->
+    <div class="container">
+      <div class="row">
+        <div class="column" style="margin-top: 5%">
+          <!-- Profilbild -->
+          <img src="images/-O171LzQ_400x400.jpg" class="avatar" srcset="images/-O171LzQ_400x400.jpg" alt="">
+          <!-- Titel -->
+          <h1 role="heading">simaxsp</h1>
+          <!-- Kurze Bio -->
+          <p style="font-size: 20px;"><b>Meine kleine Linkliste</b></p>
 
-        <!-- Socials -->
-        <p class="section-title">Socials</p>
-        <!-- Bluesky -->
-        <div class="qrcode-container" id="qrcode-container-bluesky">
-          <a class="button button-bluesky" href="https://bsky.app/profile/sptzl.eu" target="_blank" rel="noopener" role="button">
-            <img class="icon" aria-hidden="true" src="images/icons/bluesky_white.svg" alt="Bluesky Logo">BlueSky
-          </a>
-          <div class="qrcode-tooltip" id="qrcode-bluesky"></div>
+          <!-- Socials -->
+          <p class="section-title">Socials</p>
+          <br>
+          <!-- Bluesky -->
+          <div class="qrcode-container" id="qrcode-container-bluesky">
+            <a class="button button-bluesky" href="https://bsky.app/profile/sptzl.eu" target="_blank" rel="noopener" role="button">
+              <img class="icon" aria-hidden="true" src="images/icons/bluesky_white.svg" alt="Bluesky Logo">BlueSky
+            </a>
+            <div class="qrcode-tooltip" id="qrcode-bluesky"></div>
+          </div>
+          <br>
+
+          <!-- Mastodon -->
+          <div class="qrcode-container" id="qrcode-container-mastodon">
+            <a rel="me" class="button button-mastodon" href="https://zug.network/@simaxsp" target="https://zug.network/@simaxsp" role="button">
+              <img class="icon" aria-hidden="true" src="images/icons/zugnetwork.ico" alt="Mastodon Logo">Mastodon
+            </a>
+            <div class="qrcode-tooltip" id="qrcode-mastodon"></div>
+          </div>
+          <br>
+
+          <!-- Pixelfed -->
+          <div class="qrcode-container" id="qrcode-container-pixelfed">
+            <a rel="me" class="button button-mastodon" href="https://pixelfed.social/simaxsp" target="https://pixelfed.social/simaxsp" role="button">
+              <img class="icon" aria-hidden="true" src="images/icons/pixelfed.svg" alt="Pixelfed-Logo">Fedi-Insta
+            </a>
+            <div class="qrcode-tooltip" id="qrcode-pixelfed"></div>
+          </div>
+          <br>
+
+          <!-- GitHub -->
+          <div class="qrcode-container" id="qrcode-container-github">
+            <a class="button button-github" href="https://github.com/simax32" target="_blank" rel="noopener" role="button">
+              <img class="icon" aria-hidden="true" src="images/icons/github.svg" alt="GitHub Logo">GitHub
+            </a>
+            <div class="qrcode-tooltip" id="qrcode-github"></div>
+          </div>
+          <br>
+
+          <!-- Messenger -->
+          <p class="section-title">Messenger</p>
+          <br>
+          <!-- Telegram -->
+          <div class="qrcode-container" id="qrcode-container-telegram">
+            <a class="button button-telegram" href="https://t.me/simaxsp" target="https://t.me/simax1111" rel="noopener" role="button">
+              <img class="icon" aria-hidden="true" src="images/icons/telegram.svg" alt="Telegram Logo">Telegram
+            </a>
+            <div class="qrcode-tooltip" id="qrcode-telegram"></div>
+          </div>
+          <br>
+
+          <!-- Bahnzeug -->
+          <p class="section-title">Bahnzeug</p>
+          <br>
+          <!-- uMap -->
+          <div class="qrcode-container" id="qrcode-container-umap">
+            <a class="button button-instagram" href="https://sptzl.eu/umap-simaxsp" target="https://sptzl.eu/umap-simaxsp" rel="noopener" role="button">
+              <img class="icon" aria-hidden="true" src="images/icons/umap.svg" alt="umap Logo">Meine Bahnfahrten
+            </a>
+            <div class="qrcode-tooltip" id="qrcode-umap"></div>
+          </div>
+          <br>
+
+          <!-- Traewelling -->
+          <div class="qrcode-container" id="qrcode-container-traewelling">
+            <a class="button button-amazon-music" href="https://traewelling.de/@simaxsp" target="https://traewelling.de/@simaxsp" rel="noopener" role="button">
+              <img class="icon" aria-hidden="true" src="images/icons/Traewelling.png" alt="Traewelling">Traewelling
+            </a>
+            <div class="qrcode-tooltip" id="qrcode-traewelling"></div>
+          </div>
+          <br>
+
+          <!-- Fußzeile -->
+          <p><a href="privacy.html">Datenschutzinfo</a></p>
+          <a rel="me" href="https://zug.network/@simaxsp" style="display: none;">Mastodon</a>
+          <p style="font-size: 15px;">Build your own by forking <a href="https://littlelink.io" target="_blank" rel="noopener" role="button">LittleLink</a>.</p>
         </div>
-        <br>
-
-        <!-- Mastodon -->
-        <div class="qrcode-container" id="qrcode-container-mastodon">
-          <a rel="me" class="button button-mastodon" href="https://zug.network/@simaxsp" target="https://zug.network/@simaxsp" role="button">
-            <img class="icon" aria-hidden="true" src="images/icons/zugnetwork.ico" alt="Mastodon Logo">Mastodon
-          </a>
-          <div class="qrcode-tooltip" id="qrcode-mastodon"></div>
-        </div>
-        <br>
-
-        <!-- Pixelfed -->
-        <div class="qrcode-container" id="qrcode-container-pixelfed">
-          <a rel="me" class="button button-mastodon" href="https://pixelfed.social/simaxsp" target="https://pixelfed.social/simaxsp" role="button">
-            <img class="icon" aria-hidden="true" src="images/icons/pixelfed.svg" alt="Pixelfed-Logo">Fedi-Insta
-          </a>
-          <div class="qrcode-tooltip" id="qrcode-pixelfed"></div>
-        </div>
-        <br>
-
-        <!-- GitHub -->
-        <div class="qrcode-container" id="qrcode-container-github">
-          <a class="button button-github" href="https://github.com/simax32" target="_blank" rel="noopener" role="button">
-            <img class="icon" aria-hidden="true" src="images/icons/github.svg" alt="GitHub Logo">GitHub
-          </a>
-          <div class="qrcode-tooltip" id="qrcode-github"></div>
-        </div>
-        <br>
-
-        <!-- Messenger -->
-        <p class="section-title">Messenger</p>
-        <!-- Telegram -->
-        <div class="qrcode-container" id="qrcode-container-telegram">
-          <a class="button button-telegram" href="https://t.me/simaxsp" target="https://t.me/simax1111" rel="noopener" role="button">
-            <img class="icon" aria-hidden="true" src="images/icons/telegram.svg" alt="Telegram Logo">Telegram
-          </a>
-          <div class="qrcode-tooltip" id="qrcode-telegram"></div>
-        </div>
-        <br>
-
-        <!-- Bahnzeug -->
-        <p class="section-title">Bahnzeug</p>
-        <!-- uMap -->
-        <div class="qrcode-container" id="qrcode-container-umap">
-          <a class="button button-instagram" href="https://sptzl.eu/umap-simaxsp" target="https://sptzl.eu/umap-simaxsp" rel="noopener" role="button">
-            <img class="icon" aria-hidden="true" src="images/icons/umap.svg" alt="umap Logo">Meine Bahnfahrten
-          </a>
-          <div class="qrcode-tooltip" id="qrcode-umap"></div>
-        </div>
-        <br>
-
-        <!-- Traewelling -->
-        <div class="qrcode-container" id="qrcode-container-traewelling">
-          <a class="button button-amazon-music" href="https://traewelling.de/@simaxsp" target="https://traewelling.de/@simaxsp" rel="noopener" role="button">
-            <img class="icon" aria-hidden="true" src="images/icons/Traewelling.png" alt="Traewelling">Traewelling
-          </a>
-          <div class="qrcode-tooltip" id="qrcode-traewelling"></div>
-        </div>
-        <br>
-
-        <!-- Fußzeile -->
-        <p><a href="privacy.html">Datenschutzinfo</a></p>
-        <a rel="me" href="https://zug.network/@simaxsp" style="display: none;">Mastodon</a>
-        <p style="font-size: 15px;">Build your own by forking <a href="https://littlelink.io" target="_blank" rel="noopener" role="button">LittleLink</a>.</p>
       </div>
     </div>
   </div>
@@ -261,6 +319,36 @@
           tooltip.style.display = 'none';
           container.classList.remove('show-qr');
         }, 300);
+      });
+    });
+
+    // Interaktiver Hintergrund
+    document.addEventListener('DOMContentLoaded', function() {
+      const bg = document.getElementById('interactive-bg');
+
+      // Funktion zum Erstellen eines Kreises am Mauszeiger
+      function createCircle(x, y) {
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        circle.style.width = '50px';
+        circle.style.height = '50px';
+        circle.style.left = `${x}px`;
+        circle.style.top = `${y}px`;
+        bg.appendChild(circle);
+
+        // Entferne den Kreis nach der Animation
+        setTimeout(() => {
+          circle.style.transform = 'scale(2)';
+          circle.style.opacity = '0';
+          setTimeout(() => {
+            bg.removeChild(circle);
+          }, 500);
+        }, 10);
+      }
+
+      // Event-Listener für Mausbewegungen
+      document.addEventListener('mousemove', function(e) {
+        createCircle(e.clientX, e.clientY);
       });
     });
   </script>
