@@ -1,143 +1,268 @@
-  <!-- 
-    
-  Version 2.5.0 
-  
-  This is to help you track what version of LittleLink you forked.
-
-  -->
-  
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <!-- Page Information
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Page Information -->
   <meta charset="utf-8">
   <title>simaxsp´s Links</title>
   <meta name="description" content="Simon Spötzl">
   <meta name="author" content="Simon Spötzl">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Mobile Specific Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/normalize.css">
-
-    <!-- Themes:
-            Auto:   css/skeleton-auto.css
-            Light:  css/skeleton-light.css
-            Dark:   css/skeleton-dark.css
-     -->
-    <link rel="stylesheet" href="css/skeleton-auto.css">
-
-    <!-- Brand Styles -->
-    <link rel="stylesheet" href="css/brands.css">
-<style>
-  /* Hover-Effekt für alle Buttons */
-  a.button:hover {
-    opacity: 0.8; /* Leicht durchsichtig machen */
-    transform: scale(1.05); /* Leicht vergrößern */
-    transition: all 0.3s ease; /* Sanfter Übergang */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatten für 3D-Effekt */
-  }
-</style>
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/skeleton-auto.css">
+  <link rel="stylesheet" href="css/brands.css">
+  <style>
+    /* Spiegel-Effekt für alle Buttons */
+    a.button {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+    a.button::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%);
+      opacity: 0.5;
+      transform: scaleY(0.3);
+      z-index: -1;
+    }
+    /* Button-Highlighting beim Hovern */
+    a.button:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    /* Runde Icons */
+    a.button img.icon {
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      aspect-ratio: 1/1;
+    }
+    /* Hintergrundfarbverlauf für Lightmode */
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    /* Hintergrundfarbverlauf für Darkmode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: linear-gradient(135deg, #3a3f4b 0%, #1a1d29 100%);
+      }
+    }
+    img.avatar {
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    /* Überschriften-Stil mit automatischer Anpassung an Dark-/Lightmode */
+    .section-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--text-color); /* Automatische Anpassung */
+    }
+    /* QR-Code-Container-Stil */
+    .qrcode-container {
+      position: relative;
+      margin-bottom: 0;
+      transition: margin-bottom 0.3s ease;
+    }
+    .qrcode-tooltip {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 100%;
+      margin-top: 10px;
+      background: white;
+      padding: 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .qrcode-tooltip img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    /* Platz für QR-Code schaffen */
+    .qrcode-container.show-qr {
+      margin-bottom: 120px;
+    }
+  </style>
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/-O171LzQ_400x400.jpg">
-
 </head>
-
 <body>
-
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Primary Page Layout -->
   <div class="container">
     <div class="row">
       <div class="column" style="margin-top: 10%">
-
-        <!-- 
-
-          ## Getting Started with LittleLink
-
-          This page has been built with every pre-designed button available in LittleLink by default. You can rearrange and delete as needed.
-
-          You can add your own brand or others brands you may need in the `css/brands.css` file. 
-
-          You can add custom icons to `images/icons/...`. It is recommended to use a 24x24 .SVG.
-
-          Edit the "Your Image Here" section to add your own personal branding, like a picture of yourself or your brand logo!
-
-          Edit the "Title" section to change the page heading. You can use something like your name, your social handle, or your brand name.
-
-          Edit the "Short Bio" section tell users about yourself or your brand.
-
-        -->
-
-        <!-- Your Image Here -->
+        <!-- Profilbild -->
         <img src="images/-O171LzQ_400x400.jpg" class="avatar" srcset="images/-O171LzQ_400x400.jpg" alt="">
-
-        <!-- Title -->
+        <!-- Titel -->
         <h1 role="heading">Simon Spötzl</h1>
-
-        <!-- Short Bio -->
+        <!-- Kurze Bio -->
         <p style="font-size: 24px;"><b>Meine kleine Linkliste</b></p>
 
-        <!--
+        <!-- Socials -->
+        <p class="section-title">Socials</p>
+        <!-- Bluesky -->
+        <div class="qrcode-container" id="qrcode-container-bluesky">
+          <a class="button button-bluesky" href="https://bsky.app/profile/sptzl.eu" target="_blank" rel="noopener" role="button">
+            <img class="icon" aria-hidden="true" src="images/icons/bluesky_white.svg" alt="Bluesky Logo">BlueSky
+          </a>
+          <div class="qrcode-tooltip" id="qrcode-bluesky"></div>
+        </div>
+        <br>
 
-      -->
-        <p><b>Socials</b></p>
-          <!-- Mastodon -->
+        <!-- Mastodon -->
+        <div class="qrcode-container" id="qrcode-container-mastodon">
+          <a rel="me" class="button button-mastodon" href="https://zug.network/@simaxsp" target="https://zug.network/@simaxsp" role="button">
+            <img class="icon" aria-hidden="true" src="images/icons/zugnetwork.ico" alt="Mastodon Logo">Mastodon
+          </a>
+          <div class="qrcode-tooltip" id="qrcode-mastodon"></div>
+        </div>
+        <br>
 
-          <!-- Bluesky -->
-         <a class="button button-bluesky" href="https://bsky.app/profile/sptzl.eu" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/bluesky_white.svg" alt="Bluesky Logo">BlueSky</a><br>
-        
-                <!--Mastodon-->
-        <a rel="me" class="button button-mastodon" href="https://zug.network/@simaxsp" target="https://zug.network/@simaxsp" role="button"><img class="icon" aria-hidden="true" src="images/icons/zugnetwork.ico" alt="Mastodon Logo">Mastodon</a><br>
-
-        <!--Pixelfed-->
-        <a rel="me" class="button button-mastodon" href="https://pixelfed.social/simaxsp" target="https://pixelfed.social/simaxsp" role="button"><img class="icon" aria-hidden="true" src="images/icons/pixelfed.svg" alt="Pixelfed-Logo">Fedi-Insta</a><br>
+        <!-- Pixelfed -->
+        <div class="qrcode-container" id="qrcode-container-pixelfed">
+          <a rel="me" class="button button-mastodon" href="https://pixelfed.social/simaxsp" target="https://pixelfed.social/simaxsp" role="button">
+            <img class="icon" aria-hidden="true" src="images/icons/pixelfed.svg" alt="Pixelfed-Logo">Fedi-Insta
+          </a>
+          <div class="qrcode-tooltip" id="qrcode-pixelfed"></div>
+        </div>
+        <br>
 
         <!-- GitHub -->
-        <a class="button button-github" href="https://github.com/simax32" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/github.svg" alt="GitHub Logo">GitHub</a><br>
-
+        <div class="qrcode-container" id="qrcode-container-github">
+          <a class="button button-github" href="https://github.com/simax32" target="_blank" rel="noopener" role="button">
+            <img class="icon" aria-hidden="true" src="images/icons/github.svg" alt="GitHub Logo">GitHub
+          </a>
+          <div class="qrcode-tooltip" id="qrcode-github"></div>
+        </div>
         <br>
-        <p><b>Messenger</b></p>
 
-        <!--Telegram-->
-        <a class="button button-telegram" href="https://t.me/simaxsp" target="https://t.me/simax1111" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/telegram.svg" alt="Telegram Logo">Telegram</a><br>
-
-               
-
+        <!-- Messenger -->
+        <p class="section-title">Messenger</p>
+        <!-- Telegram -->
+        <div class="qrcode-container" id="qrcode-container-telegram">
+          <a class="button button-telegram" href="https://t.me/simaxsp" target="https://t.me/simax1111" rel="noopener" role="button">
+            <img class="icon" aria-hidden="true" src="images/icons/telegram.svg" alt="Telegram Logo">Telegram
+          </a>
+          <div class="qrcode-tooltip" id="qrcode-telegram"></div>
+        </div>
         <br>
-        <p><b>Bahnzeug</b></p>
-        <a class="button button-instagram" href="https://sptzl.eu/umap-simaxsp" target="https://sptzl.eu/umap-simaxsp" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/umap.svg" alt="umap Logo">Meine Bahnfahrten</a><br>
 
-        <!--Traewelling-->
-        <a class="button button-amazon-music" href="https://traewelling.de/@simaxsp" target="https://traewelling.de/@simaxsp" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/Traewelling.png" alt="Traewelling">Traewelling</a><br>
+        <!-- Bahnzeug -->
+        <p class="section-title">Bahnzeug</p>
+        <!-- uMap -->
+        <div class="qrcode-container" id="qrcode-container-umap">
+          <a class="button button-instagram" href="https://sptzl.eu/umap-simaxsp" target="https://sptzl.eu/umap-simaxsp" rel="noopener" role="button">
+            <img class="icon" aria-hidden="true" src="images/icons/umap.svg" alt="umap Logo">Meine Bahnfahrten
+          </a>
+          <div class="qrcode-tooltip" id="qrcode-umap"></div>
+        </div>
+        <br>
 
-          
-        
-            <br>
-            <br>
-            <br>
-            <br>
-        <p><a href="privacy.html">Datenschutzinfo</a>
+        <!-- Traewelling -->
+        <div class="qrcode-container" id="qrcode-container-traewelling">
+          <a class="button button-amazon-music" href="https://traewelling.de/@simaxsp" target="https://traewelling.de/@simaxsp" rel="noopener" role="button">
+            <img class="icon" aria-hidden="true" src="images/icons/Traewelling.png" alt="Traewelling">Traewelling
+          </a>
+          <div class="qrcode-tooltip" id="qrcode-traewelling"></div>
+        </div>
+        <br>
+
+        <!-- Fußzeile -->
+        <p><a href="privacy.html">Datenschutzinfo</a></p>
         <a rel="me" href="https://zug.network/@simaxsp" style="display: none;">Mastodon</a>
-
-
-
         <p style="font-size: 15px;">Build your own by forking <a href="https://littlelink.io" target="_blank" rel="noopener" role="button">LittleLink</a>.</p>
       </div>
     </div>
   </div>
 
-  <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
+  <!-- QR-Code-Bibliothek -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    // QR-Codes generieren
+    new QRCode(document.getElementById("qrcode-bluesky"), {
+      text: "https://bsky.app/profile/sptzl.eu",
+      width: 100,
+      height: 100,
+    });
+    new QRCode(document.getElementById("qrcode-mastodon"), {
+      text: "https://zug.network/@simaxsp",
+      width: 100,
+      height: 100,
+    });
+    new QRCode(document.getElementById("qrcode-pixelfed"), {
+      text: "https://pixelfed.social/simaxsp",
+      width: 100,
+      height: 100,
+    });
+    new QRCode(document.getElementById("qrcode-github"), {
+      text: "https://github.com/simax32",
+      width: 100,
+      height: 100,
+    });
+    new QRCode(document.getElementById("qrcode-telegram"), {
+      text: "https://t.me/simaxsp",
+      width: 100,
+      height: 100,
+    });
+    new QRCode(document.getElementById("qrcode-umap"), {
+      text: "https://sptzl.eu/umap-simaxsp",
+      width: 100,
+      height: 100,
+    });
+    new QRCode(document.getElementById("qrcode-traewelling"), {
+      text: "https://traewelling.de/@simaxsp",
+      width: 100,
+      height: 100,
+    });
 
+    // Funktion für QR-Code-Anzeige
+    document.querySelectorAll('.qrcode-container').forEach(container => {
+      const button = container.querySelector('a.button');
+      const tooltip = container.querySelector('.qrcode-tooltip');
+      let hoverTimeout;
+
+      button.addEventListener('mouseenter', () => {
+        hoverTimeout = setTimeout(() => {
+          container.classList.add('show-qr');
+          tooltip.style.display = 'block';
+          setTimeout(() => {
+            tooltip.style.opacity = '1';
+          }, 10);
+        }, 750); // 5 Sekunden Verzögerung
+      });
+
+      button.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimeout);
+        tooltip.style.opacity = '0';
+        setTimeout(() => {
+          tooltip.style.display = 'none';
+          container.classList.remove('show-qr');
+        }, 300);
+      });
+    });
+  </script>
+</body>
 </html>
