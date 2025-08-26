@@ -57,22 +57,16 @@
       overflow-x: hidden;
       transition: background 0.5s ease;
     }
-
     /* Lightmode Hintergrund mit drei Farben */
     body {
-    background: linear-gradient(135deg, #FFD1DC 0%, #FFE5B4 50%, #B4E9FF 100%);
-    /*background: linear-gradient(135deg, #98FB98 0%, #FFD6FF 50%, #B4EEB4 100%);*/
-    
-    
+      background: linear-gradient(135deg, #FFD1DC 0%, #FFE5B4 50%, #B4E9FF 100%);
     }
-
     /* Darkmode Hintergrund */
     @media (prefers-color-scheme: dark) {
       body {
         background: linear-gradient(135deg, #3a3f4b 0%, #1a1d29 100%);
       }
     }
-
     /* Stile für den interaktiven Hintergrund */
     #interactive-bg {
       position: fixed;
@@ -84,7 +78,6 @@
       z-index: -1;
       overflow: hidden;
     }
-
     .circle {
       position: absolute;
       border-radius: 50%;
@@ -92,7 +85,6 @@
       pointer-events: none;
       transition: transform 0.5s ease, opacity 0.5s ease;
     }
-
     /* Anpassungen für Darkmode */
     @media (prefers-color-scheme: dark) {
       .circle {
@@ -100,11 +92,42 @@
       }
     }
 
-    img.avatar {
-      border: 3px solid #fff;
+    /* Bildrahmen mit Ringeffekt */
+    .avatar-container {
+      position: relative;
+      width: 135px;  /* Etwas größer als das Bild, um einen dünnen Rahmen zu haben */
+      height: 135px; /* Etwas größer als das Bild, um einen dünnen Rahmen zu haben */
+      margin: 0 auto 20px;
       border-radius: 50%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: conic-gradient(
+        #078d70 0%, #98e8c1 25%,
+        #98e8c1 25%, #ffffff 50%,
+        #ffffff 50%, #7bade2 75%,
+        #7bade2 75%, #3d1a78 100%
+      );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .avatar-container::before {
+      content: "";
+      position: absolute;
+      width: 125px;  /* Etwas kleiner als der Container, um den Rahmen zu erstellen */
+      height: 125px; /* Etwas kleiner als der Container, um den Rahmen zu erstellen */
+      border-radius: 50%;
+      background: white; /* Innere Farbe (z.B. Hintergrund des Bildes) */
       z-index: 1;
+    }
+
+    .avatar-container img.avatar {
+      width: 125px;  /* Etwas kleiner als der innere Kreis */
+      height: 125px; /* Etwas kleiner als der innere Kreis */
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
     }
 
     /* Überschriften-Stil mit automatischer Anpassung an Dark-/Lightmode */
@@ -168,13 +191,14 @@
     <div class="container">
       <div class="row">
         <div class="column" style="margin-top: 5%">
-          <!-- Profilbild -->
-          <img src="images/-O171LzQ_400x400.jpg" class="avatar" srcset="images/-O171LzQ_400x400.jpg" alt="">
+          <!-- Profilbild Container für den Rahmen -->
+          <div class="avatar-container">
+            <img src="images/-O171LzQ_400x400.jpg" class="avatar" srcset="images/new_profile.jpg" alt="Profilbild">
+          </div>
           <!-- Titel -->
           <h1 role="heading">simaxsp</h1>
           <!-- Kurze Bio -->
           <p style="font-size: 20px;"><b>Meine kleine Linkliste</b></p>
-
           <!-- Socials -->
           <p class="section-title">Socials</p>
           <br>
@@ -186,7 +210,6 @@
             <div class="qrcode-tooltip" id="qrcode-bluesky"></div>
           </div>
           <br>
-
           <!-- Mastodon -->
           <div class="qrcode-container" id="qrcode-container-mastodon">
             <a rel="me" class="button button-mastodon" href="https://zug.network/@simaxsp" target="https://zug.network/@simaxsp" role="button">
@@ -195,7 +218,6 @@
             <div class="qrcode-tooltip" id="qrcode-mastodon"></div>
           </div>
           <br>
-
           <!-- Pixelfed -->
           <div class="qrcode-container" id="qrcode-container-pixelfed">
             <a rel="me" class="button button-mastodon" href="https://pixelfed.social/simaxsp" target="https://pixelfed.social/simaxsp" role="button">
@@ -204,7 +226,6 @@
             <div class="qrcode-tooltip" id="qrcode-pixelfed"></div>
           </div>
           <br>
-
           <!-- GitHub -->
           <div class="qrcode-container" id="qrcode-container-github">
             <a class="button button-github" href="https://github.com/simax32" target="_blank" rel="noopener" role="button">
@@ -213,7 +234,6 @@
             <div class="qrcode-tooltip" id="qrcode-github"></div>
           </div>
           <br>
-
           <!-- Messenger -->
           <p class="section-title">Messenger</p>
           <br>
@@ -225,7 +245,6 @@
             <div class="qrcode-tooltip" id="qrcode-telegram"></div>
           </div>
           <br>
-
           <!-- Bahnzeug -->
           <p class="section-title">Bahnzeug</p>
           <br>
@@ -237,7 +256,6 @@
             <div class="qrcode-tooltip" id="qrcode-umap"></div>
           </div>
           <br>
-
           <!-- Traewelling -->
           <div class="qrcode-container" id="qrcode-container-traewelling">
             <a class="button button-amazon-music" href="https://traewelling.de/@simaxsp" target="https://traewelling.de/@simaxsp" rel="noopener" role="button">
@@ -246,7 +264,6 @@
             <div class="qrcode-tooltip" id="qrcode-traewelling"></div>
           </div>
           <br>
-
           <!-- Fußzeile -->
           <p><a href="privacy.html">Datenschutzinfo</a></p>
           <a rel="me" href="https://zug.network/@simaxsp" style="display: none;">Mastodon</a>
@@ -259,41 +276,55 @@
   <!-- QR-Code-Bibliothek -->
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script>
-    // QR-Codes generieren
+    // QR-Codes generieren mit farblichen Anpassungen basierend auf den jeweiligen Plattformen
     new QRCode(document.getElementById("qrcode-bluesky"), {
       text: "https://bsky.app/profile/sptzl.eu",
       width: 100,
       height: 100,
+      colorDark : "#4181e0",  // Blau für Bluesky
+      colorLight : "#f7eacc",
     });
     new QRCode(document.getElementById("qrcode-mastodon"), {
       text: "https://zug.network/@simaxsp",
       width: 100,
       height: 100,
+      colorDark : "#2d1c43",  // Typisch für Mastodon, kann variieren
+      colorLight : "#f7eacc",
     });
     new QRCode(document.getElementById("qrcode-pixelfed"), {
       text: "https://pixelfed.social/simaxsp",
       width: 100,
       height: 100,
+      colorDark : "#405DE6",  // Typisch für Instagram-basierte Plattformen
+      colorLight : "#f7eacc",
     });
     new QRCode(document.getElementById("qrcode-github"), {
       text: "https://github.com/simax32",
       width: 100,
       height: 100,
+      colorDark : "#191613",  // Dunkelgrau für GitHub
+      colorLight : "#f7eacc",
     });
     new QRCode(document.getElementById("qrcode-telegram"), {
       text: "https://t.me/simaxsp",
       width: 100,
       height: 100,
+      colorDark : "#0088CC",  // Blau für Telegram
+      colorLight : "#f7eacc",
     });
     new QRCode(document.getElementById("qrcode-umap"), {
       text: "https://sptzl.eu/umap-simaxsp",
       width: 100,
       height: 100,
+      colorDark : "#b02395",  // Grün für uMap, Annahme
+      colorLight : "#f7eacc",
     });
     new QRCode(document.getElementById("qrcode-traewelling"), {
       text: "https://traewelling.de/@simaxsp",
       width: 100,
       height: 100,
+      colorDark : "#0077B6",  // Blau für Traewelling, Annahme
+      colorLight : "#f7eacc",
     });
 
     // Funktion für QR-Code-Anzeige
